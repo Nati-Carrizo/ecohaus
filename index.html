@@ -325,8 +325,10 @@
 
         .compromiso-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .compromiso-item {
@@ -428,6 +430,77 @@
         }
 
         .sistema-card p { font-size: 0.95rem; line-height: 1.8; }
+
+        /* Lista de etapas del proceso A+ */
+        .sistema-etapas {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid rgba(212, 175, 122, 0.15);
+        }
+
+        .sistema-etapa {
+            padding: 1.3rem 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 122, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .sistema-etapa:hover {
+            background: rgba(212, 175, 122, 0.04);
+            padding-left: 2rem;
+        }
+
+        .sistema-etapa-check {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .sistema-etapa-check svg {
+            width: 13px;
+            height: 13px;
+            fill: none;
+            stroke: var(--gold);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .sistema-etapa:hover .sistema-etapa-check {
+            background: var(--gold);
+        }
+
+        .sistema-etapa:hover .sistema-etapa-check svg {
+            stroke: var(--dark);
+        }
+
+        .sistema-etapa-text {
+            font-family: 'Futura', 'Jost', 'Trebuchet MS', sans-serif;
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            flex: 1;
+        }
+
+        .sistema-etapa-text small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-left: 0.5rem;
+            font-weight: 300;
+        }
 
         .sistema-statement {
             text-align: center;
@@ -565,18 +638,13 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.8) 100%);
+            background: linear-gradient(180deg, transparent 70%, rgba(0, 0, 0, 0.25) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .sip-gallery-item span {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-family: 'Futura', 'Jost', 'Trebuchet MS', sans-serif;
-            font-style: italic;
-            font-size: 1rem;
-            color: var(--gold);
-            z-index: 2;
+        .sip-gallery-item:hover::before {
+            opacity: 1;
         }
 
         .gallery-1 { background-image: url('obra-03.webp'); }
@@ -757,6 +825,8 @@
                 border-bottom: 1px solid rgba(212, 175, 122, 0.15);
             }
             .sistema-card:last-child { border-bottom: none; }
+            .sistema-etapa { padding: 1.1rem 1rem; }
+            .sistema-etapa:hover { padding-left: 1.5rem; }
             .sip-content { grid-template-columns: 1fr; gap: 3rem; }
             .sip-gallery { grid-template-columns: 1fr; gap: 1rem; }
             .contacto-info { gap: 2rem; flex-direction: column; }
@@ -801,12 +871,15 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <img src="ecohaus-logo.jpg" alt="EcoHaus - Hogares Eficientes" class="hero-logo" />
-            <span class="hero-eyebrow">Arquitectura Sustentable · Mar del Plata</span>
-            <h1>Hogares eficientes <em>construidos con propósito</em></h1>
+            <span class="hero-eyebrow">Arquitectura y Construcción · Mar del Plata</span>
+            <h1>Delegá sin estrés: <em>tu casa en tiempo récord</em></h1>
             <p class="hero-subtitle">
-                Somos un estudio de arquitectura especializado en sustentabilidad. Lo acompañamos en cada etapa de su proyecto, desde el diseño hasta la entrega, con una construcción de calidad, plazos claros y total transparencia.
+                Somos un estudio de arquitectura y construcción enfocado en la eficiencia. Acompañamos cada etapa: diseñamos un proyecto a tu medida, gestionamos trámites, materiales y construimos con estándares de calidad, plazos claros y total transparencia.
             </p>
-            <a href="#contacto" class="cta-button">Consultar por mi proyecto</a>
+            <p class="hero-subtitle" style="margin-top: -1.5rem;">
+                Proyectamos y construimos considerando la integración al entorno, buscando alto rendimiento térmico durante todo el año y una reducción significativa en los costos de mantenimiento a lo largo del tiempo.
+            </p>
+            <a href="#contacto" class="cta-button">Consultá por tu proyecto</a>
         </div>
         <div class="scroll-indicator">Descubrir</div>
     </section>
@@ -822,35 +895,25 @@
 
             <div class="compromiso-intro reveal">
                 <p>
-                    En EcoHaus entendemos que construir un hogar es una de las decisiones más importantes de la vida. Por eso asumimos cada proyecto con responsabilidad, cercanía y un compromiso genuino con nuestros clientes. Nuestro propósito es que el proceso sea tan disfrutable como el resultado.
+                    Construir un hogar es una de las decisiones más importantes de la vida, por eso en EcoHaus asumimos cada proyecto con responsabilidad, cercanía y un compromiso genuino con nuestros clientes.
                 </p>
             </div>
 
             <div class="compromiso-grid">
                 <div class="compromiso-item reveal">
                     <span class="item-number">— 01</span>
-                    <h3>Diseño con Coherencia</h3>
-                    <p>Proyectamos hogares pensados para cada cliente y cada terreno, priorizando el confort, la funcionalidad y la armonía con el entorno costero.</p>
+                    <h3>Diseño de proyectos a medida</h3>
+                    <p>Diseñamos hogares, casas vacacionales y complejos turísticos pensando en cada cliente y cada terreno, priorizando el confort, la funcionalidad y la armonía con el entorno costero.</p>
                 </div>
                 <div class="compromiso-item reveal">
                     <span class="item-number">— 02</span>
-                    <h3>Gestión Integral de Obra</h3>
-                    <p>Nos ocupamos de los planos, los permisos y todos los trámites. Usted recibe un servicio completo, profesional y libre de cargas administrativas.</p>
+                    <h3>Gestión Integral y Logística Optimizada</h3>
+                    <p>Nos ocupamos de los trámites de presentación de planos y gestión de permisos de construcción. Coordinamos y ejecutamos compras centralizadas de materiales y entregas. Una planificación rigurosa nos permite garantizar calidad, plazos y presupuesto por contrato.</p>
                 </div>
                 <div class="compromiso-item reveal">
                     <span class="item-number">— 03</span>
-                    <h3>Logística Optimizada</h3>
-                    <p>La compra centralizada de materiales y una planificación rigurosa nos permiten garantizar calidad, cumplir plazos y mantener los costos bajo control.</p>
-                </div>
-                <div class="compromiso-item reveal">
-                    <span class="item-number">— 04</span>
-                    <h3>Construcción Llave en Mano</h3>
-                    <p>Entregamos su casa lista para habitar. De esta forma, usted puede dedicarse exclusivamente a decorarla y disfrutarla con su familia.</p>
-                </div>
-                <div class="compromiso-item reveal" style="grid-column: 1 / -1;">
-                    <span class="item-number">— 05</span>
-                    <h3>Transparencia y Comunicación</h3>
-                    <p>Plazos definidos desde el inicio y reportes de avance de obra cada quince días. Creemos que una comunicación clara es la base de una relación de confianza.</p>
+                    <h3>Construcción eficiente</h3>
+                    <p>Soluciones constructivas cuidadosamente elegidas para maximizar la eficiencia, la durabilidad y el valor a largo plazo de cada metro cuadrado construido.</p>
                 </div>
             </div>
         </div>
@@ -861,39 +924,61 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-eyebrow">Nuestra Propuesta</span>
-                <h2>Sistema <em>A+</em></h2>
+                <h2>Solución total con Sistema <em>A+</em></h2>
                 <div class="section-divider"></div>
             </div>
 
             <div class="sistema-intro reveal">
                 <p>
-                    El Sistema A+ es nuestro estándar de excelencia. Representa la forma en que entendemos la construcción moderna: hogares que se integran al paisaje costero, con un alto rendimiento térmico durante todo el año y una reducción significativa en los costos de mantenimiento a lo largo del tiempo.
-                </p>
-                <p style="margin-top: 1.5rem;">
-                    Se apoya en tres pilares fundamentales que nos permiten entregar resultados consistentes en cada proyecto.
+                    El Sistema A+ es nuestro estándar de excelencia para que puedas delegar el proceso de diseño y construcción sin estrés, recibiendo reportes de avance para mantenerte siempre informado. Incluye todas las etapas:
                 </p>
             </div>
 
-            <div class="sistema-grid reveal">
-                <div class="sistema-card">
-                    <span class="sistema-card-number">I.</span>
-                    <h3>Optimización</h3>
-                    <p>Soluciones constructivas cuidadosamente elegidas para maximizar la eficiencia, la durabilidad y el valor a largo plazo de cada hogar.</p>
+            <div class="sistema-etapas reveal">
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Diagnóstico de terreno</span>
                 </div>
-                <div class="sistema-card">
-                    <span class="sistema-card-number">II.</span>
-                    <h3>Gestión</h3>
-                    <p>Coordinación profesional e impecable desde el diseño hasta la entrega, con procesos claros en cada etapa del proyecto.</p>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Anteproyecto</span>
                 </div>
-                <div class="sistema-card">
-                    <span class="sistema-card-number">III.</span>
-                    <h3>Eficiencia</h3>
-                    <p>Hogares energéticamente eficientes que reducen el consumo, los costos y el impacto ambiental a lo largo de toda su vida útil.</p>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Proyecto final</span>
+                </div>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Presupuesto final</span>
+                </div>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Presentación de planos</span>
+                </div>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Gestión de permisos de construcción</span>
+                </div>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Compra de materiales y logística</span>
+                </div>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Dirección de obra</span>
+                </div>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Tareas preliminares</span>
+                </div>
+                <div class="sistema-etapa">
+                    <span class="sistema-etapa-check"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"></polyline></svg></span>
+                    <span class="sistema-etapa-text">Construcción y mano de obra</span>
                 </div>
             </div>
 
             <div class="sistema-statement reveal">
-                <p>Construir una casa <em>energéticamente eficiente</em> no debería restarle energía.</p>
+                <p>Construir una casa <em>energéticamente eficiente</em><br>no debería restarte energía.</p>
             </div>
         </div>
     </section>
@@ -954,15 +1039,9 @@
 
             <!-- Pequeña galería de obras -->
             <div class="sip-gallery reveal">
-                <div class="sip-gallery-item gallery-1">
-                    <span>Fachada Lateral</span>
-                </div>
-                <div class="sip-gallery-item gallery-2">
-                    <span>Living Principal</span>
-                </div>
-                <div class="sip-gallery-item gallery-3">
-                    <span>Cocina Integrada</span>
-                </div>
+                <div class="sip-gallery-item gallery-1"></div>
+                <div class="sip-gallery-item gallery-2"></div>
+                <div class="sip-gallery-item gallery-3"></div>
             </div>
         </div>
     </section>
@@ -971,11 +1050,11 @@
     <section id="contacto" class="contacto">
         <div class="container">
             <div class="reveal">
-                <span class="section-eyebrow">Conversemos sobre su proyecto</span>
-                <h2>Estamos para <em>acompañarlo</em></h2>
+                <span class="section-eyebrow">Conversemos sobre tu proyecto</span>
+                <h2>Estamos para <em>acompañarte</em></h2>
                 <div class="section-divider"></div>
                 <p class="contacto-subtitle">
-                    Nos encantaría conocer su idea y contarle en detalle cómo trabajamos. Escríbanos por WhatsApp y coordinamos una primera conversación sin compromiso.
+                    Nos encantaría conocer tu idea y contarte en detalle cómo trabajamos. Escribinos por WhatsApp y coordinamos una primera conversación sin compromiso.
                 </p>
 
                 <a href="https://wa.me/5492233060322?text=Hola%20EcoHaus,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20proyectos." target="_blank" rel="noopener" class="whatsapp-button">
@@ -989,10 +1068,6 @@
                     <div class="contacto-info-item">
                         <span class="contacto-info-label">Teléfono</span>
                         <a href="tel:+5492233060322" class="contacto-info-value">+54 9 223 306 0322</a>
-                    </div>
-                    <div class="contacto-info-item">
-                        <span class="contacto-info-label">Correo</span>
-                        <a href="mailto:info@ecohausmdq.com" class="contacto-info-value">info@ecohausmdq.com</a>
                     </div>
                     <div class="contacto-info-item">
                         <span class="contacto-info-label">Instagram</span>
